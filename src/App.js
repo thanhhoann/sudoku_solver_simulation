@@ -39,8 +39,18 @@ export default function App() {
             Try a different puzzle
           </div>
 
-          <div className="btn solve_btn" onClick={solveButton}>
-            SOLVE
+          <div className="solve_btns">
+            <div className="btn solve_no_algo_btn" onClick={solveButton}>
+              SOLVE using no algorithms
+            </div>
+            <div className="btn solve_backtracking_btn" onClick={solveButton}>
+              SOLVE using&nbsp;
+              <span style={{ color: "orange" }}>Backtracking Algorithm</span>
+            </div>
+            <div className="btn solve_graph_btn" onClick={solveButton}>
+              SOLVE using&nbsp;
+              <span style={{ color: "#96CEB4" }}>Graph Coloring Algorithm</span>
+            </div>
           </div>
         </div>
       </div>

@@ -52,26 +52,34 @@ body {
 }
 
 .btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid white;
   color: white;
-  width: 19rem;
-  height: 3rem;
-  font-size: 3rem;
+  border: 2px solid white;
+  min-width: 29rem;
+  height: 10rem;
   cursor: pointer;
-  margin-bottom: 10vh;
 }
 
-.btn:hover {
-  transform: scale(1.2);
+.solve_btns {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .solve_btn {
-  width: 10rem;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .try_btn {
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+
+.btn:hover {
+  transform: scale(0.9);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
