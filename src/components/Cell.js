@@ -19,10 +19,10 @@ export default function Cell({ num, index, isReset }) {
   ];
 
   setTimeout(() => {
-    num != 10 && setContent(num);
+    num != 10 && setContent(num + 1);
   }, index * 10);
 
-  let time_transition = index * 0.04;
+  let time_transition = index * 0.03;
 
   return (
     <>

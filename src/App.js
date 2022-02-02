@@ -9,6 +9,9 @@ import {
 const initial_board = new_board_generator();
 const initial_solution = solution_generator(initial_board);
 
+console.log(initial_board);
+console.log(initial_solution);
+
 export default function App() {
   const [sudoku_board, setSudoku_board] = useState(parse_board(initial_board));
   const [solution, setSolution] = useState(initial_solution);
@@ -56,7 +59,9 @@ export default function App() {
 }
 
 const parse_board = (b) => {
-  for (let i in b) if (b[i] == null) b[i] = 10;
+  for (let i in b) {
+    if (b[i] == null) b[i] = 10;
+  }
   return b;
 };
 
