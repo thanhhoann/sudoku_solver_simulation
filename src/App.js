@@ -12,6 +12,7 @@ const initial_solution = solution_generator(initial_board);
 export default function App() {
   const [sudoku_board, setSudoku_board] = useState(parse_board(initial_board));
   const [solution, setSolution] = useState(initial_solution);
+  const [isReset, setReset] = useState(false);
 
   const solveButton = () => {
     setSudoku_board(solution);
@@ -21,6 +22,7 @@ export default function App() {
     let new_board = new_board_generator();
     let new_board_solution = solution_generator(new_board);
 
+    setReset(true);
     setSudoku_board(parse_board(new_board));
     setSolution(new_board_solution);
   };
@@ -30,27 +32,22 @@ export default function App() {
       <div className="screen">
         <div className="board">
           {sudoku_board.map((num, index) => {
-            return <Cell key={index} num={num} />;
+            return (
+              <Cell key={index} num={num} index={index} isReset={isReset} />
+            );
           })}
         </div>
 
-        <div className="btns">
-          <div className="btn try_btn" onClick={tryButton}>
-            Try a different puzzle
+        <div className="right_side">
+          <div className="title">[ sudoku_solver ]</div>
+
+          <div className="btn solve_btn" onClick={solveButton}>
+            Solve using&nbsp;
+            <span style={{ color: "orange" }}>Graph Coloring Algorithm</span>
           </div>
 
-          <div className="solve_btns">
-            <div className="btn solve_no_algo_btn" onClick={solveButton}>
-              SOLVE using no algorithms
-            </div>
-            <div className="btn solve_backtracking_btn" onClick={solveButton}>
-              SOLVE using&nbsp;
-              <span style={{ color: "orange" }}>Backtracking Algorithm</span>
-            </div>
-            <div className="btn solve_graph_btn" onClick={solveButton}>
-              SOLVE using&nbsp;
-              <span style={{ color: "#96CEB4" }}>Graph Coloring Algorithm</span>
-            </div>
+          <div className="btn try_btn" onClick={tryButton}>
+            Try a different puzzle
           </div>
         </div>
       </div>
@@ -59,6 +56,8 @@ export default function App() {
 }
 
 const parse_board = (b) => {
-  for (let i in b) if (b[i] == null) b[i] = 0;
+  for (let i in b) if (b[i] == null) b[i] = 10;
   return b;
 };
+
+const backtracking = (b) => {};

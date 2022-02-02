@@ -1,23 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default function Cell({ num }) {
+export default function Cell({ num, index, isReset }) {
+  const [content, setContent] = useState();
+
   const colors = [
-    { name: "#FF0075" }, // 0
-    { name: "#00C1D4" }, // 1
-    { name: "#FFEEAD" }, // 2
-    { name: "#39A388" }, // 3
-    { name: "#7900FF" }, // 4
-    { name: "#548CFF" }, // 5
-    { name: "#F55C47" }, // 6
-    { name: "#676FA3" }, // 7
-    { name: "#FFAB4C" }, // 8
-    { name: "#D5D5D5" }, // 9
+    { name: "#FDD2BF" }, // 0
+    { name: content ? "#00C1D4" : "white" }, // 1
+    { name: content ? "#D96098" : "white" }, // 2
+    { name: content ? "#39A388" : "white" }, // 3
+    { name: content ? "#7900FF" : "white" }, // 4
+    { name: content ? "#548CFF" : "white" }, // 5
+    { name: content ? "#F55C47" : "white" }, // 6
+    { name: content ? "#676FA3" : "white" }, // 7
+    { name: content ? "#FFAB4C" : "white" }, // 8
+    { name: content ? "#D5D5D5" : "white" }, // 9
+    { name: content ? "#D5D5D5" : "white" }, // 9
+    { name: content ? "#D5D5D5" : "white" }, // 9
   ];
+
+  setTimeout(() => {
+    num != 10 && setContent(num);
+  }, index * 10);
+
+  let time_transition = index * 0.04;
 
   return (
     <>
-      <div className="cell" style={{ backgroundColor: `${colors[num].name}` }}>
-        {num}
+      <div className="cell">
+        <div
+          class="side top"
+          style={{
+            backgroundColor: `${colors[num].name}`,
+            transition: `${time_transition}s cubic-bezier(0.39, 0.575, 0.565, 1)`,
+          }}
+        ></div>
+        <div
+          class="side left"
+          style={{
+            backgroundColor: `${colors[num].name}`,
+            transition: `${time_transition}s cubic-bezier(0.39, 0.575, 0.565, 1)`,
+          }}
+        ></div>
+        <div
+          class="side front"
+          style={{
+            backgroundColor: `${colors[num].name}`,
+            transition: `${time_transition}s cubic-bezier(0.39, 0.575, 0.565, 1)`,
+            transform: num == 10 && `rotateX(0deg)`,
+          }}
+        >
+          <div className="text">{num != 10 && content}</div>
+        </div>
       </div>
     </>
   );
